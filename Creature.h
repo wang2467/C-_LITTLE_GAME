@@ -20,7 +20,7 @@ public:
 	string description;
 	string status;
 	Attack* attack;
-	vector<string> vulnerablility;
+	vector<string> vulnerability;
 	vector<Trigger*> trigger;
 
 	Creature(xml_node<> *node);

@@ -10,8 +10,8 @@ Creature::Creature(xml_node<>* a){
 			description = n -> value();
 		} else if (string(n -> name()) == "attack"){
 			attack = new Attack(n);
-		} else if (string(n -> name()) == "vulnerablility"){
-			vulnerablility.push_back(n -> value());
+		} else if (string(n -> name()) == "vulnerability"){
+			vulnerability.push_back(n -> value());
 		} else if (string(n -> name()) == "trigger"){
 			trigger.push_back(new Trigger(n));
 		}

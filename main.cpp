@@ -5,7 +5,7 @@ using namespace std;
 using namespace rapidxml;
 
 int main(){
-	file<> xmlFile("itemsample.xml");
+	file<> xmlFile("containersample.xml");
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 
@@ -17,7 +17,17 @@ int main(){
 	// 	}
 	// }
 	Game* g = new Game(&mapnode);
-	for (int i = 0; i < (g->rooms).size(); i++){
-		cout << (g -> rooms)[i] -> name << endl;
+	for (int i = 0; i < (g->containers).size(); i++){
+		vector<string> it = (g -> containers)[i] -> accepts;
+		for (int i = 0; i < it.size(); i++){
+			cout << it[i] << endl;
+		}
 	}
+
+	// for(int i = 0; i < (g -> items).size(); i++){
+	// 	cout << (g -> items)[i] -> name << endl;
+	// 	if (i == 0){
+	// 		cout << (g -> items)[i] -> turnon -> action << endl;
+	// 	}
+	// }
 }

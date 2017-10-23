@@ -5,7 +5,6 @@ Room::Room(xml_node<>* a){
 	for (xml_node<>* n = a -> first_node(); n; n = n -> next_sibling()){
 		if (string(n -> name()) == "name"){
 			name = n -> value();
-			cout << name << endl;
 		} else if (string(n -> name()) == "status"){
 			status = n -> value();
 		} else if (string(n -> name()) == "description"){

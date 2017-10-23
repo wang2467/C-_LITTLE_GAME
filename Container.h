@@ -22,7 +22,7 @@ public:
 
 	vector<string> accepts;
 	vector<Trigger*> triggers;
-	vector<Item*> items;
+	vector<string> items;
 
 	Container(xml_node<> *node);
 	virtual ~Container();

@@ -8,12 +8,12 @@ Container::Container(xml_node<>* a){
 			status = n -> value();
 		} else if (string(n -> name()) == "description"){
 			description = n -> value();
-		} else if (string(n -> name()) == "accpet"){
+		} else if (string(n -> name()) == "accept"){
 			accepts.push_back(n -> value());
 		} else if (string(n -> name()) == "trigger"){
 			triggers.push_back(new Trigger(n));
 		} else if (string(n -> name()) == "item"){
-			items.push_back(new Item(n));
+			items.push_back(n -> value());
 		}
 	}	 
 }

@@ -10,7 +10,7 @@ Item::Item(xml_node<>* a){
 			description = n -> value();
 		} else if (string(n -> name()) == "status"){
 			status = n -> value();
-		} else if (string(n -> name()) == "turn on"){
+		} else if (string(n -> name()) == "turnon"){
 			turnon = new TurnOn(n);
 		} else if (string(n -> name()) == "trigger"){
 			triggers.push_back(new Trigger(n));
@@ -19,4 +19,5 @@ Item::Item(xml_node<>* a){
 }
 
 Item::~Item(){
+	
 }
