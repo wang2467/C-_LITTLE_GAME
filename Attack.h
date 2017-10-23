@@ -13,8 +13,8 @@ using namespace rapidxml;
 
 class Attack{
 public:
-	vector<string> print;
-	vector<string> action;
+	vector<string> prints;
+	vector<string> actions;
 
 	Attack(xml_node<> *node);
 	virtual ~Attack();

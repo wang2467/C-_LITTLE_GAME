@@ -17,11 +17,11 @@ using namespace rapidxml;
 class Item{
 public:
 	string name;
-	string descrption;
+	string description;
 	string writing;
 	string status;
 	TurnOn* turnon;
-	vector<Trigger*> trigger_list;
+	vector<Trigger*> triggers;
 
 	Item(xml_node<> *node);
 	virtual ~Item();

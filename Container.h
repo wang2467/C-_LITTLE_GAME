@@ -17,12 +17,12 @@ using namespace rapidxml;
 class Container{
 public:
 	string name;
-	string descrption;
+	string description;
 	string status;
 
-	vector<string> accept;
-	vector<Trigger*> trigger;
-	vector<Item*> item;
+	vector<string> accepts;
+	vector<Trigger*> triggers;
+	vector<Item*> items;
 
 	Container(xml_node<> *node);
 	virtual ~Container();

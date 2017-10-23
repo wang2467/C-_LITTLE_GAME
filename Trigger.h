@@ -18,13 +18,16 @@ class Trigger{
 public:
 	string type;
 	string command;
-	vector<string> print;
-	vector<string> action;
+	vector<string> prints;
+	vector<string> actions;
 	TriggerOwner* owner;
 	TriggerStatus* status; 
 
 	Trigger(xml_node<> *node);
 	virtual ~Trigger();
+
+private:
+	bool determineConditionType(xml_node<>* node);
 };
 
 #endif 

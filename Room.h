@@ -20,13 +20,13 @@ using namespace rapidxml;
 class Room{
 public:
 	string name;
-	string descrption;
+	string description;
 	string type;
 	string status;
 	vector<Border*> border_list;
-	vector<Container*> container_list;
-	vector<Item*> item_list;
-	vector<Creature*> creature_list;
+	vector<string> container_list;
+	vector<string> item_list;
+	vector<string> creature_list;
 	vector<Trigger*> trigger_list;
 
 	Room(xml_node<> *node);

@@ -17,9 +17,9 @@ using namespace rapidxml;
 class Creature{
 public:
 	string name;
-	string descrption;
+	string description;
 	string status;
-	string attack;
+	Attack* attack;
 	vector<string> vulnerablility;
 	vector<Trigger*> trigger;
 
