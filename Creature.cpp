@@ -13,7 +13,7 @@ Creature::Creature(xml_node<>* a){
 		} else if (string(n -> name()) == "vulnerability"){
 			vulnerability.push_back(n -> value());
 		} else if (string(n -> name()) == "trigger"){
-			trigger.push_back(new Trigger(n));
+			trigger_list.push_back(new Trigger(n));
 		}
 	}	 
 }

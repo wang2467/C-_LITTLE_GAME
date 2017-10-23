@@ -21,7 +21,7 @@ public:
 	string status;
 	Attack* attack;
 	vector<string> vulnerability;
-	vector<Trigger*> trigger;
+	vector<Trigger*> trigger_list;
 
 	Creature(xml_node<> *node);
 	virtual ~Creature();
