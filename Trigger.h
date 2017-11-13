@@ -18,6 +18,7 @@ class Trigger{
 public:
 	string type;
 	string command;
+	int dirty;
 	vector<string> prints;
 	vector<string> actions;
 	TriggerOwner* owner;

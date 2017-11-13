@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "Item.h"
 #include "Trigger.h"
@@ -31,6 +32,10 @@ public:
 
 	Room(xml_node<> *node);
 	virtual ~Room();
+	Room* updateRoom(string);
+	bool hasContainer(string object);
+	bool hasItem(string object);
+	bool hasCreature(string object);
 };
 
 

@@ -5,7 +5,7 @@ using namespace std;
 using namespace rapidxml;
 
 int main(){
-	file<> xmlFile("triggersample.xml");
+	file<> xmlFile("sample.txt.xml");
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 
@@ -17,24 +17,25 @@ int main(){
 	// 	}
 	// }
 	Game* g = new Game(&mapnode);
-	for (int i = 0; i < (g->creatures).size(); i++){
-		vector<Trigger*> it = (g -> creatures)[i] -> trigger_list;
-		// for (int j = 0; j < it.size(); j++){
-		// 	vector<string> p = it[j] -> s;
-		// 	for (int k = 0; k < p.size(); k++){
-		// 		cout << p[k] << endl;
-		// 	}
-		// }
-		for (int j = 0; j < it.size(); j++){
-			TriggerOwner* o = it[j] -> owner;
-			TriggerStatus* s = it[j] -> status;
-			if (o != NULL){
-				cout << o -> owner << o -> object << o -> has << endl;
-			} else {
-				cout << s -> object << s -> status << endl;
-			}
-		}
-	}
+	// for (int i = 0; i < (g->creatures).size(); i++){
+	// 	vector<Trigger*> it = (g -> creatures)[i] -> trigger_list;
+	// 	// for (int j = 0; j < it.size(); j++){
+	// 	// 	vector<string> p = it[j] -> s;
+	// 	// 	for (int k = 0; k < p.size(); k++){
+	// 	// 		cout << p[k] << endl;
+	// 	// 	}
+	// 	// }
+	// 	for (int j = 0; j < it.size(); j++){
+	// 		TriggerOwner* o = it[j] -> owner;
+	// 		TriggerStatus* s = it[j] -> status;
+	// 		if (o != NULL){
+	// 			cout << o -> owner << o -> object << o -> has << endl;
+	// 		} else {
+	// 			cout << s -> object << s -> status << endl;
+	// 		}
+	// 	}
+	// }
+	g -> start();
 
 	// for(int i = 0; i < (g -> items).size(); i++){
 	// 	cout << (g -> items)[i] -> name << endl;

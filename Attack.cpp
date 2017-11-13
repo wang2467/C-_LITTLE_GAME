@@ -6,7 +6,9 @@ Attack::Attack(xml_node<>* a){
 			prints.push_back(n -> value());
 		} else if (string(n -> name()) == "action"){
 			actions.push_back(n -> value());
-		} 
+		} else if (string(n -> name()) == "condition"){
+			condition = new AttackCondition(n);
+		}
 	}	
 }
 

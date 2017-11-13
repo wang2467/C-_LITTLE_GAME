@@ -1,6 +1,7 @@
 #include "Trigger.h"
 
 Trigger::Trigger(xml_node<>* a){
+	dirty = 1;
 	for(xml_node<>* n = a -> first_node(); n; n = n -> next_sibling()){
 		if (string(n -> name()) == "type"){
 			type = n -> value();

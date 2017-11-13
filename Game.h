@@ -12,10 +12,15 @@
 #include "Creature.h"
 
 #include <iostream>
+#include <sstream>
+#include <iterator>
+#include <fstream>
 #include <string.h>
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <ctype.h>
+#include <map>
 
 using namespace std;
 using namespace rapidxml;
@@ -23,13 +28,24 @@ using namespace rapidxml;
 class Game{
 public:
 	xml_node<> *node;
-	
+	bool game_over;
+	Room* current_room;
+	map<string, string> lookupTable;
+
 	vector<Room*> rooms;
 	vector<Container*> containers;
 	vector<Creature*> creatures;
 	vector<Item*> items;
+	vector<string> inventory;
 
 	Game(xml_node<> **node);
+	void start();
+	bool checkTrigger(string);
+	bool checkInput(string);
+	void Act(string);
+	void setupTypeLookUpTable();
+	bool checkCondition(string, string, string, string);
+	
 	virtual ~Game();
 
 private:

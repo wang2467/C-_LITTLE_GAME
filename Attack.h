@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "AttackCondition.h"
+
 #include "rapidxml.hpp"
 #include "rapidxml_print.hpp"
 #include "rapidxml_utils.hpp"
@@ -15,6 +17,7 @@ class Attack{
 public:
 	vector<string> prints;
 	vector<string> actions;
+	AttackCondition* condition;
 
 	Attack(xml_node<> *node);
 	virtual ~Attack();

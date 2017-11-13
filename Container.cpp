@@ -20,3 +20,13 @@ Container::Container(xml_node<>* a){
 
 Container::~Container(){
 }
+
+
+bool Container::hasItem(string object){
+	for (int i = 0; i < items.size(); i++){
+		if (object == items[i]){
+			return true;
+		}
+	}
+	return false;
+}

@@ -25,7 +25,9 @@ public:
 	vector<string> items;
 
 	Container(xml_node<> *node);
+	bool hasItem(string);
 	virtual ~Container();
+
 };
 
 #endif 
