@@ -85,7 +85,7 @@ bool Game::checkTrigger(string input){
 						string has = to -> has;
 						if (checkCondition(to -> owner, type, object, has)){
 							for (int j = 0; j < (t -> prints).size(); j++){
-								cout << (t -> prints)[j] << endl;
+								cout << (t -> prints)[j] << endl;  //needs to perform action
 							}
 							flag = true;
 						}
@@ -264,6 +264,17 @@ void Game::Act(string input){
 				inventory.erase(inventory.begin()+i);
 				current_room -> item_list.push_back(results[1]);
 				cout << results[1] << " dropped" << endl;
+				return;
+			}
+		}
+		cout << "Error" << endl;
+	} 
+	else if (results[0] == "turn" && results[1] == "on"){
+		string item = results[2];
+		for (int i = 0; i < items.size(); i++){
+			if (items[i] -> name == item){
+				cout << "You activate the " << item << endl; 
+				cout << items[i] -> turnon -> print << endl; //needs to perfrom action
 				return;
 			}
 		}
