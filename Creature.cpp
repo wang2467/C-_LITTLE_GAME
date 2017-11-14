@@ -22,6 +22,9 @@ Creature::~Creature(){
 }
 
 bool Creature::isVulnerableTo(string object){
+	if (vulnerability.size() == 0){
+		return true;
+	}
 	for (int i = 0; i < vulnerability.size(); i++){
 		if (object == vulnerability[i]){
 			return true;

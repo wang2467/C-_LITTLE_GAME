@@ -9,8 +9,10 @@ Attack::Attack(xml_node<>* a){
 		} else if (string(n -> name()) == "condition"){
 			if(determineConditionType(n)){
 				owner = new TriggerOwner(n);
+				status = NULL;
 			} else{
 				status = new TriggerStatus(n);
+				owner = NULL;
 			}
 		}
 	}	

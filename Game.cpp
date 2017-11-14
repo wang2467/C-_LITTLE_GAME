@@ -45,9 +45,7 @@ Game::~Game(){
 void Game::start(){
 	string input;
 	cout << current_room -> description << endl;
-	// int ct = 0;
 	while (!game_over){
-	// while (ct < 15){
 		cout << "> ";
 		getline(cin, input);
 		if (!checkInput(input)){
@@ -58,7 +56,12 @@ void Game::start(){
 			continue;
 		}
 		Act(input);
-		// ct++;
+		for(int i = 0; i < creatures.size(); i++){
+			checkCreatureTrigger(creatures[i] -> name);
+		}
+		for (int i = 0; i < containers.size(); i++){
+			checkContainerTrigger(containers[i] -> name);
+		}
 	}
 }
 
@@ -122,6 +125,7 @@ void Game::checkCreatureTrigger(string name){
 			performAction(trig -> actions[i]);
 		}
 	}
+	return;
 }
 
 bool Game::checkCreatureTrigger_help(string name, Trigger** trig){
@@ -134,13 +138,13 @@ bool Game::checkCreatureTrigger_help(string name, Trigger** trig){
 					TriggerOwner* to = t -> owner;
 					if (checkTriggerStatus(ts)){
 						*trig = t;
-						if (t -> type == "single"){
+						if (t -> type == "single" || (t -> type != "single" && t -> type != "permanent")){
 							t -> dirty = 0;
 						}
 						return true;
 					} else if (checkTriggerOwner(to)){
 						*trig = t;
-						if (t -> type == "single"){
+						if (t -> type == "single" || (t -> type != "single" && t -> type != "permanent")){
 							t -> dirty = 0;
 						}
 						return true;	
@@ -175,13 +179,13 @@ bool Game::checkContainerTrigger_help(string name, Trigger** trig){
 					TriggerOwner* to = t -> owner;
 					if (checkTriggerStatus(ts)){
 						*trig = t;
-						if (t -> type == "single"){
+						if (t -> type == "single" || (t -> type != "single" && t -> type != "permanent")){
 							t -> dirty = 0;
 						}
 						return true;						
 					} else if (checkTriggerOwner(to)){
 						*trig = t;
-						if (t -> type == "single"){
+						if (t -> type == "single" || (t -> type != "single" && t -> type != "permanent")){
 							t -> dirty = 0;
 						}
 						return true;	
@@ -458,15 +462,19 @@ void Game::Act(string input){
 	} 
 	else if (results[0] == "turn" && results[1] == "on"){
 		string item = results[2];
-		for (int i = 0; i < items.size(); i++){
-			if (items[i] -> name == item){
-				cout << "You activate the " << item << endl; 
-				cout << items[i] -> turnon -> print << endl; //needs to perfrom action
-				performAction(items[i] -> turnon -> action);
-				for (int j = 0; j < current_room -> creature_list.size(); j++){
-					checkCreatureTrigger((current_room -> creature_list)[j]);
+		for (int k = 0; k < inventory.size(); k++){
+			if (inventory[k] == item){
+				for (int i = 0; i < items.size(); i++){
+					if (items[i] -> name == item){
+						cout << "You activate the " << item << endl; 
+						cout << items[i] -> turnon -> print << endl; //needs to perfrom action
+						performAction(items[i] -> turnon -> action);
+						for (int j = 0; j < current_room -> creature_list.size(); j++){
+							checkCreatureTrigger((current_room -> creature_list)[j]);
+						}
+						return;
+					}				
 				}
-				return;
 			}
 		}
 		cout << "Error" << endl;
@@ -493,15 +501,17 @@ void Game::Act(string input){
 			for (int i = 0; i < creatures.size(); i++){
 				if (results[1] == creatures[i] -> name){
 					if (creatures[i] -> isVulnerableTo(results[3])){
-						if (creatures[i] -> attack -> status == NULL || checkTriggerStatus(creatures[i] -> attack -> status)){
+						if (creatures[i] -> attack == NULL || creatures[i] -> attack -> status == NULL || checkTriggerStatus(creatures[i] -> attack -> status)){
 							for (int k = 0; k < inventory.size(); k++){
 								if (results[3] == inventory[k]){
 									cout << "You assult the " << results[1] << " with " << results[3] << endl;
-									for (int j = 0; j < creatures[i] -> attack -> prints.size(); j++){
-										cout << creatures[i] -> attack -> prints[j] << endl;  //needs to perform action
-									}
-									for (int j = 0; j < creatures[i] -> attack -> actions.size(); j++){
-										performAction(creatures[i] -> attack -> actions[j]);
+									if (creatures[i] -> attack != NULL){
+										for (int j = 0; j < creatures[i] -> attack -> prints.size(); j++){
+											cout << creatures[i] -> attack -> prints[j] << endl;  //needs to perform action
+										}
+										for (int j = 0; j < creatures[i] -> attack -> actions.size(); j++){
+											performAction(creatures[i] -> attack -> actions[j]);
+										}
 									}
 									return;
 								}
