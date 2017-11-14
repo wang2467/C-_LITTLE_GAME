@@ -27,6 +27,7 @@ public:
 	Container(xml_node<> *node);
 	bool hasItem(string);
 	virtual ~Container();
+	bool doesAccept(string);
 
 };
 

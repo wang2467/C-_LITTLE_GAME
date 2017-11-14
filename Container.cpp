@@ -30,3 +30,15 @@ bool Container::hasItem(string object){
 	}
 	return false;
 }
+
+bool Container::doesAccept(string object){
+	if (accepts.size() == 0){
+		return true;
+	}
+	for (int i = 0; i < accepts.size(); i++){
+		if (object == accepts[i]){
+			return true;
+		}
+	}
+	return false;
+}

@@ -47,6 +47,8 @@ public:
 	bool checkCondition(string, string, string, string);
 	void Add(string, string);
 	void Update(string, string);
+	void Delete(string);
+	void GameOver();
 	bool checkCreatureTrigger_help(string, Trigger**);
 	void checkCreatureTrigger(string);
 	bool checkTriggerOwner(TriggerOwner*);
