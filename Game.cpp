@@ -36,6 +36,7 @@ void Game::setupTypeLookUpTable(){
 	for (int i = 0; i < creatures.size(); i++){
 		lookupTable[(creatures[i] -> name)] = "creature";
 	}
+	lookupTable["inventory"] = "inventory";
 }
 
 Game::~Game(){
@@ -44,8 +45,10 @@ Game::~Game(){
 void Game::start(){
 	string input;
 	cout << current_room -> description << endl;
-
+	// int ct = 0;
 	while (!game_over){
+	// while (ct < 15){
+		cout << "> ";
 		getline(cin, input);
 		if (!checkInput(input)){
 			cout << "Error" << endl;
@@ -55,6 +58,7 @@ void Game::start(){
 			continue;
 		}
 		Act(input);
+		// ct++;
 	}
 }
 
@@ -73,28 +77,141 @@ bool Game::checkTrigger(string input){
 		for (int i = 0; i < current_room -> trigger_list.size(); i++){
 			Trigger* t = current_room -> trigger_list[i];
 			if (t -> dirty == 1){
-				if (t -> type == "single"){
-					t -> dirty = 0;
-				}
 				if (t -> command == input){
 					TriggerOwner* to = t -> owner;
 					TriggerStatus* ts = t -> status;
-					if (to != NULL){
-						string type = lookupTable[to -> owner];
-						string object = to -> object;
-						string has = to -> has;
-						if (checkCondition(to -> owner, type, object, has)){
-							for (int j = 0; j < (t -> prints).size(); j++){
-								cout << (t -> prints)[j] << endl;  //needs to perform action
-							}
-							flag = true;
+					if (checkTriggerOwner(to)){
+						for (int j = 0; j < (t -> prints).size(); j++){
+							cout << (t -> prints)[j] << endl;  //needs to perform action
 						}
-					}
+						for (int j = 0; j < (t -> actions).size(); j++){
+							performAction((t -> actions)[j]);
+						}
+						flag = true;
+						if (t -> type == "single"){
+							t -> dirty = 0;
+						}
+						return flag;
+					} else if (checkTriggerStatus(ts)){
+						for (int j = 0; j < (t -> prints).size(); j++){
+							cout << (t -> prints)[j] << endl;  //needs to perform action
+						}
+						for (int j = 0; j < (t -> actions).size(); j++){
+							performAction((t -> actions)[j]);
+						}
+						if (t -> type == "single"){
+							t -> dirty = 0;
+						}
+						flag = true;
+						return flag;					
+					} 
 				}
 			}
 		}
 	}
 	return flag;
+}
+
+void Game::checkCreatureTrigger(string name){
+	Trigger* trig;
+	if (checkCreatureTrigger_help(name, &trig)){
+		for (int i = 0; i < trig -> prints.size(); i++){
+			cout << trig -> prints[i] << endl;
+		}
+		for (int i = 0; i < trig -> actions.size(); i++){
+			performAction(trig -> actions[i]);
+		}
+	}
+}
+
+bool Game::checkCreatureTrigger_help(string name, Trigger** trig){
+	for (int i = 0; i < creatures.size(); i++){
+		if (creatures[i] -> name == name){
+			for (int j = 0; j < creatures[i] -> trigger_list.size(); j++){
+				Trigger* t = creatures[i] -> trigger_list[j];
+				if (t -> dirty == 1){
+					TriggerStatus* ts = t -> status;
+					TriggerOwner* to = t -> owner;
+					if (checkTriggerStatus(ts)){
+						*trig = t;
+						if (t -> type == "single"){
+							t -> dirty = 0;
+						}
+						return true;
+					} else if (checkTriggerOwner(to)){
+						*trig = t;
+						if (t -> type == "single"){
+							t -> dirty = 0;
+						}
+						return true;	
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+void Game::checkContainerTrigger(string name){
+	Trigger* trig;
+	if (checkContainerTrigger_help(name, &trig)){
+		for (int i = 0; i < trig -> prints.size(); i++){
+			cout << trig -> prints[i] << endl;
+		}
+		for (int i = 0; i < trig -> actions.size(); i++){
+			performAction(trig -> actions[i]);
+		}
+	}	
+}
+
+
+bool Game::checkContainerTrigger_help(string name, Trigger** trig){
+	for(int i = 0; i < containers.size(); i++){
+		if (containers[i] -> name == name){
+			for (int j = 0; j < containers[i] -> triggers.size(); j++){
+				Trigger* t = containers[i] -> triggers[j];
+				if (t -> dirty == 1){
+					TriggerStatus* ts = t -> status;
+					TriggerOwner* to = t -> owner;
+					if (checkTriggerStatus(ts)){
+						*trig = t;
+						if (t -> type == "single"){
+							t -> dirty = 0;
+						}
+						return true;						
+					} else if (checkTriggerOwner(to)){
+						*trig = t;
+						if (t -> type == "single"){
+							t -> dirty = 0;
+						}
+						return true;	
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool Game::checkTriggerOwner(TriggerOwner* to){
+	if (to != NULL){
+		string type = lookupTable[to -> owner];
+		string object = to -> object;
+		string has = to -> has;	
+		return checkCondition(to -> owner, type, object, has);
+	}
+	return false;
+}
+
+bool Game::checkTriggerStatus(TriggerStatus* ts){
+	if (ts != NULL){
+		string object = ts -> object;
+		string status = ts -> status;
+		string object_type = lookupTable[object];
+		bool judge = checkConditionStatus(object, object_type, status);
+		return judge;
+	}
+	return false;
 }
 
 bool Game::checkCondition(string owner, string type, string object, string has){
@@ -158,6 +275,54 @@ bool Game::checkCondition(string owner, string type, string object, string has){
 	}
 	return false;
 }
+
+bool Game::checkConditionStatus(string object, string object_type, string status){
+	if (object_type == "room"){
+		for (int i = 0; i < rooms.size(); i++){
+			if (rooms[i] -> name == object){
+				if (rooms[i] -> status == status){
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+	} else if (object_type == "item"){
+		for (int i = 0; i < items.size(); i++){
+			if (items[i] -> name == object){
+				if (items[i] -> status == status){
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}		
+	} else if (object_type == "container"){
+		for (int i = 0; i < containers.size(); i++){
+			if (containers[i] -> name == object){
+				if (containers[i] -> status == status){
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+	} else if (object_type == "creatures"){
+		for (int i = 0; i < creatures.size(); i++){
+			if (creatures[i] -> name == object){
+				if (creatures[i] -> status == status){
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+	}
+	return false;
+
+}
+
+
 void Game::Act(string input){
 	/*
 		check the direction assuming there's no trigger
@@ -196,10 +361,15 @@ void Game::Act(string input){
 	} 
 	else if (input == "i"){
 		if (inventory.size() == 0){
-			cout << "empty" << endl;
+			cout << "Inventory: empty" << endl;
 		} else{
+			cout << "Inventory: ";
 			for (int i = 0; i < inventory.size(); i++){
-				cout << inventory[i] << endl;
+				if (i != inventory.size() - 1){
+					cout << inventory[i] << ", ";
+				} else {
+					cout << inventory[i] << endl;
+				}
 			}
 		}
 	}
@@ -234,16 +404,30 @@ void Game::Act(string input){
 				for (int j = 0; j < containers.size(); j++){
 					if (containers[j] -> name == current_room -> container_list[i]){
 						containers[j] -> status = "unlocked";
-						cout << containers[j] -> name << " contains ";
-						for (int k = 0; k < (containers[j] -> items).size();k++){
-							cout << containers[j] -> items[k] << ", ";
-						}
-						cout << endl;
+						if ((containers[j] -> items).size() == 0){
+							cout << containers[j] -> name << " is empty" << endl;
+						} else {
+							cout << containers[j] -> name << " contains ";
+							for (int k = 0; k < (containers[j] -> items).size();k++){
+								if (k != (containers[j] -> items).size()-1){
+									cout << containers[j] -> items[k] << ", ";									
+								} else{
+									cout << containers[j] -> items[k];
+								}
+							}
+							cout << endl;
+						}	
 						return;
 					}
 				}
 			}
 		}
+		if (current_room -> type == "exit" && results[1] == "exit"){
+			cout << "Game Over" << endl;
+			game_over = true;
+			return;
+		}
+		cout << "Error" << endl;
 	}
 	else if (results[0] == "read"){
 		for (int i = 0; i < inventory.size(); i++){
@@ -252,11 +436,14 @@ void Game::Act(string input){
 					if (items[j] -> name == results[1] && (items[j] -> writing).length() != 0){
 						cout << items[j] -> writing << endl;
 						return;
+					} else if (items[j] -> name == results[1]){
+						cout << "Nothing written" << endl;
+						return;
 					}
 				}
 			}
 		}
-		cout << "Nothing written" << endl;
+		cout << "Error" << endl;
 	}
 	else if (results[0] == "drop"){
 		for (int i = 0; i < inventory.size(); i++){
@@ -275,11 +462,112 @@ void Game::Act(string input){
 			if (items[i] -> name == item){
 				cout << "You activate the " << item << endl; 
 				cout << items[i] -> turnon -> print << endl; //needs to perfrom action
+				performAction(items[i] -> turnon -> action);
+				for (int j = 0; j < current_room -> creature_list.size(); j++){
+					checkCreatureTrigger((current_room -> creature_list)[j]);
+				}
 				return;
 			}
 		}
+		cout << "Error" << endl;
+	} else if (results[0] == "put" && results[2] == "in"){
+		string item_new = results[1];
+		string container_new = results[3];
+		for (int i = 0; i < containers.size(); i++){
+			if (containers[i] -> name == container_new){
+				for (int j = 0; j < inventory.size(); j++){
+					if (item_new == inventory[j]){
+						containers[i] -> items.push_back(item_new);			
+						cout << "Item " << item_new << " added to " << container_new << endl;
+						checkContainerTrigger(container_new);
+						return;			
+					}
+				}
+			}
+		}
+		cout << "Error" << endl;
+	} 
+	else if (results[0] == "attack" && results[2] == "with"){
+		if (current_room -> hasCreature(results[1])){
+			for (int i = 0; i < creatures.size(); i++){
+				if (results[1] == creatures[i] -> name){
+					if (creatures[i] -> isVulnerableTo(results[3])){
+						if (checkTriggerStatus(creatures[i] -> attack -> status)){
+							for (int j = 0; j < creatures[i] -> attack -> prints.size(); j++){
+								cout << creatures[i] -> attack -> prints[j] << endl;  //needs to perform action
+							}
+							for (int j = 0; j < creatures[i] -> attack -> actions.size(); j++){
+								performAction(creatures[i] -> attack -> actions[j]);
+							}
+							return;
+						}
+					}
+				}
+			}
+		} 
+		cout << "Error" << endl;
+	} 
+	else{
 		cout << "Error" << endl;
 	}
 
 }
 
+void Game::Add(string object, string destination){
+	string destination_type = lookupTable[destination];
+	if (destination_type == "room"){
+		for (int i = 0; i < rooms.size(); i++){
+			if (rooms[i] -> name == destination){
+				(rooms[i] -> item_list).push_back(object);
+			}
+		}
+	} else if (destination_type == "container"){
+		for (int i = 0; i < containers.size(); i++){
+			if (containers[i] -> name == destination){
+				(containers[i] -> items).push_back(object);
+			}
+		}
+	}
+}
+
+void Game::Update(string object, string newStatus){
+	string object_type = lookupTable[object];
+	if (object_type == "item"){
+		for (int i = 0; i < items.size(); i++){
+			if (items[i] -> name == object){
+				items[i] -> status = newStatus;
+			}
+		}
+	} 
+	else if (object_type == "container"){
+		for (int i = 0; i < containers.size(); i++){
+			if (containers[i] -> name == object){
+				containers[i] -> status = newStatus;
+			}
+		}
+	}
+	else if (object_type == "creature"){
+		for (int i = 0; i < creatures.size(); i++){
+			if (creatures[i] -> name == object){
+				creatures[i] -> status = newStatus;
+			}
+		}
+	} 
+	else if (object_type == "room"){
+		for (int i = 0; i < rooms.size(); i++){
+			if (rooms[i] -> name == object){
+				rooms[i] -> status = newStatus;
+			}
+		}
+	} 
+}
+
+void Game::performAction(string action){
+	istringstream iss(action);
+	vector<string> result ((istream_iterator<string>(iss)), istream_iterator<string>());	
+	if (result[0] == "Add" && result[2] == "to"){
+		Add(result[1], result[3]);
+	} else if (result[0] == "Update" && result[2] == "to"){
+		Update(result[1], result[3]);
+	} 
+}

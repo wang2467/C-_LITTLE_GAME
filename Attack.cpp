@@ -7,10 +7,23 @@ Attack::Attack(xml_node<>* a){
 		} else if (string(n -> name()) == "action"){
 			actions.push_back(n -> value());
 		} else if (string(n -> name()) == "condition"){
-			condition = new AttackCondition(n);
+			if(determineConditionType(n)){
+				owner = new TriggerOwner(n);
+			} else{
+				status = new TriggerStatus(n);
+			}
 		}
 	}	
 }
 
 Attack::~Attack(){
+}
+
+bool Attack::determineConditionType(xml_node<>* a){
+	for (xml_node<>* n = a -> first_node(); n; n = n -> next_sibling()){
+		if (string(n -> name()) == "owner"){
+			return true;
+		}
+	}
+	return false;
 }

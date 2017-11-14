@@ -25,6 +25,7 @@ public:
 
 	Creature(xml_node<> *node);
 	virtual ~Creature();
+	bool isVulnerableTo(string object);
 };
 
 #endif 

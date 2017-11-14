@@ -20,3 +20,12 @@ Creature::Creature(xml_node<>* a){
 
 Creature::~Creature(){
 }
+
+bool Creature::isVulnerableTo(string object){
+	for (int i = 0; i < vulnerability.size(); i++){
+		if (object == vulnerability[i]){
+			return true;
+		}	
+	}
+	return false;
+}

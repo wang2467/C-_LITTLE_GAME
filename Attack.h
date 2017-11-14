@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "AttackCondition.h"
+#include "TriggerOwner.h"
+#include "TriggerStatus.h"
 
 #include "rapidxml.hpp"
 #include "rapidxml_print.hpp"
@@ -17,9 +19,13 @@ class Attack{
 public:
 	vector<string> prints;
 	vector<string> actions;
-	AttackCondition* condition;
+	//AttackCondition* condition;
+	TriggerOwner* owner;
+	TriggerStatus* status;
 
 	Attack(xml_node<> *node);
+	bool determineConditionType(xml_node<>*);
+	
 	virtual ~Attack();
 };
 

@@ -45,6 +45,16 @@ public:
 	void Act(string);
 	void setupTypeLookUpTable();
 	bool checkCondition(string, string, string, string);
+	void Add(string, string);
+	void Update(string, string);
+	bool checkCreatureTrigger_help(string, Trigger**);
+	void checkCreatureTrigger(string);
+	bool checkTriggerOwner(TriggerOwner*);
+	bool checkTriggerStatus(TriggerStatus*);
+	bool checkConditionStatus(string, string, string);
+	void performAction(string);
+	void checkContainerTrigger(string);
+	bool checkContainerTrigger_help(string, Trigger**);
 	
 	virtual ~Game();
 
