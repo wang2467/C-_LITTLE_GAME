@@ -1,14 +1,13 @@
-open exit
+You find yourself at the mouth of a cave and decide that in spite of common sense and any sense of self preservation that you're going to go exploring north into it.  It's a little dark, but luckily there are some torches on the wall.
 s
-open exit
-n
+SECRET ROOM
 e
+You find yourself at the mouth of a cave and decide that in spite of common sense and any sense of self preservation that you're going to go exploring north into it.  It's a little dark, but luckily there are some torches on the wall.
 n
+A huge cavern, a chest in the center, and a very dark corner...
+n
+A huge cavern... might kinda surround you with a locked door to the north, a chest in the center, and a very dark corner...
 e
-n
-w
-n
-n
+A huge cavern... might kinda surround you, a chest in the center, and a dark corner...
 s
-e
-open exit
+A huge cavern surrounds you with a locked door to the north and a very dark corner...

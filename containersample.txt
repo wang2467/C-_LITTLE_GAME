@@ -1,32 +1,31 @@
-i
-take sword
-read sword
-i
+Room - Entrance
 open closet
-read sword
+closet contains sword.
 take sword
-read sword
-n
-take bottle
-take note
-n
-take note
-read note
-open bottle
-take note
-read note
-put sword in bottle
-put sword in closet
-put sword in container
-open bottle
-open closet
-take note
-open bottle
-take sword
-put sword in container
-open container
-take sword
+Item sword added to inventory.
 i
-take sword
+Inventory: sword
+open closet
+closet is empty.
 n
-open exit
+Room - Main
+n
+Room - Staircase (exit)
+open bottle
+bottle contains note.
+take note
+Item note added to inventory.
+read note
+You found the exit :-)
+s
+Room - Main
+s
+Room - Entrance
+open closet
+closet is empty.
+put note in closet
+Item note added to closet
+n
+Room - Main
+n
+Room - Staircase (exit)

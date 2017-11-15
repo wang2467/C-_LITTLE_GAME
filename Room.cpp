@@ -29,7 +29,7 @@ Room::~Room(){
 }
 
 Room* Room::updateRoom(string input){
-	for (int i = 0; i < border_list.size(); i++){
+	for (unsigned int i = 0; i < border_list.size(); i++){
 		if (border_list[i] -> name == input){
 			return this;
 		}
@@ -38,7 +38,7 @@ Room* Room::updateRoom(string input){
 }
 
 bool Room::hasItem(string object){
-	for(int i = 0; i < item_list.size(); i++){
+	for(unsigned int i = 0; i < item_list.size(); i++){
 		if (item_list[i] == object){
 			return true;
 		}
@@ -47,7 +47,7 @@ bool Room::hasItem(string object){
 }
 
 bool Room::hasContainer(string object){
-	for (int i = 0; i < container_list.size(); i++){
+	for (unsigned int i = 0; i < container_list.size(); i++){
 		if (container_list[i] == object){
 			return true;
 		}
@@ -56,7 +56,7 @@ bool Room::hasContainer(string object){
 }
 
 bool Room::hasCreature(string object){
-	for (int i = 0; i < creature_list.size();i++){
+	for (unsigned int i = 0; i < creature_list.size();i++){
 		if (creature_list[i] == object){
 			return true;
 		}

@@ -23,7 +23,7 @@ Container::~Container(){
 
 
 bool Container::hasItem(string object){
-	for (int i = 0; i < items.size(); i++){
+	for (unsigned int i = 0; i < items.size(); i++){
 		if (object == items[i]){
 			return true;
 		}
@@ -35,7 +35,7 @@ bool Container::doesAccept(string object){
 	if (accepts.size() == 0){
 		return true;
 	}
-	for (int i = 0; i < accepts.size(); i++){
+	for (unsigned int i = 0; i < accepts.size(); i++){
 		if (object == accepts[i]){
 			return true;
 		}

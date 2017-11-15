@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map>
+  <room>
+    <name>Entrance</name>
+    <description>Welcome the world of creatures. Glowing sword and exotic key are on the ground.</description>
+    <border>
+      <direction>north</direction>
+      <name>Main</name>
+    </border>
+    <item>sword</item>
+    <item>key</item>
+  </room>
+  
+  <room>
+    <name>Main</name>
+    <creature>dragon</creature>
+    <description>Room of dragon</description>
+    <border>
+      <direction>south</direction>
+      <name>Entrance</name>
+    </border>
+    <border>
+      <direction>north</direction>
+      <name>Staircase</name>
+    </border>
+    <container>chest</container>
+    <trigger>
+    	<command>open chest</command>
+	<type>permanent</type>
+	<condition>
+		<object>chest</object>
+		<status>locked</status>
+	</condition>
+	<print>chest needs a key to open</print>
+    </trigger>
+	<container>door</container>
+    <trigger>
+    <command>n</command>
+	<type>permanent</type>
+	<condition>
+		<object>door</object>
+		<status>locked</status>
+	</condition>
+	<print>Dragon is portecting the door</print>
+     </trigger>
+  </room>
+  
+  
+  <room>
+    <name>Staircase</name>
+    <description>Room of giant</description>
+    <border>
+      <name>Main</name>
+      <direction>south</direction>
+    </border>
+    <creature>giant</creature>
+  </room>
+  
+  
+ <container>
+ <name>door</item>
+ <status>locked</status>
+ </container>
+  <item>
+    <name>sword</name>
+    <status>sharp</status>
+    <writing>WoOow. What a magical sword you have found. Careful this sword is very sharp</writing>
+  </item>
+
+   <item>
+    <name>axe</name>
+  </item>
+
+   <item>
+    <name>key</name>
+    <writing>Hmmm. must belong to a chest, will see.</writing>
+  </item>
+  
+ <container>
+    <name>chest</name>
+    <status>locked</status>
+    <accept>key</accept>
+    <item>axe</item>
+    <trigger>
+	<condition>
+		<has>yes</has>
+		<object>key</object>
+		<owner>chest</owner>
+	</condition>
+        <print>chest is unlocked</print>
+	<action>Update chest to unlocked</action>
+	<action>Delete key</action>
+    </trigger>
+  </container>
+
+
+  <creature>
+    <name>dragon</name>
+    <vulnerability>axe</vulnerability>
+    <vulnerability>sword</vulnerability>
+    <trigger>
+      <type>single</type>
+      <command>attack dragon with axe</command>
+      <condition>
+        <object>axe</object>
+        <status>sharp</status>
+      </condition>
+      <action>Delete dragon</action>
+	  </trigger>
+   <trigger>
+      <type>single</type>
+      <command>attack dragon with sword</command>
+      <condition>
+        <object>sword</object>
+        <status>sharp</status>
+      </condition>
+ 	<print>You slained the dragon</print>
+	 <action>Update door to unlocked</action>
+      <action>Delete dragon</action>
+    </trigger>
+  </creature>
+
+  <creature>
+    <name>giant</name>
+    <vulnerability>axe</vulnerability>
+    <attack>
+	  	<action>Game Over</action>
+	  </attack>   
+  
+  </creature>
+</map>

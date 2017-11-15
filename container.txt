@@ -1,0 +1,21 @@
+You are in one of the middle earth caves: a golden key seems to be on the ground ready for you to pick it up
+take key
+Item key added to inventory.
+n
+Hmmm, you are brave to walk here. An old rusty chest in the corner
+open chest
+chest needs a key to unlatch
+put key in chest
+Item key added to chest
+chest is unlocked
+open chest
+chest contains axe.
+take axe
+Item axe added to inventory.
+n
+You are about to get out of middle earth to the 21s century but there is a lock in which no key can open but an axe to wreck
+open exit
+you need an axe to destroy the lock
+put axe in lock
+Item axe added to lock
+lock is destroyed

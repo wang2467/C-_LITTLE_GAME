@@ -1,0 +1,13 @@
+take torch 
+n
+turn on torch 
+turn on torch 
+open chest
+take explosive 
+turn on explosive 
+attack gnome with explosive
+take key
+put key in lock
+n
+open exit
+game over

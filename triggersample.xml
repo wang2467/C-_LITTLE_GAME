@@ -12,6 +12,7 @@
   <room>
     <name>Main</name>
     <creature>dragon</creature>
+    <creature>giant</creature>
     <item>sword</item>
     <description>Room - Main</description>
     <border>

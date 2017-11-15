@@ -1,0 +1,29 @@
+The Maze. Doors are everywhere. An old bottle of wine is there.
+n
+You cannot find the door knob, a light can be very useful now
+open bottle
+bottle contains key.
+take key
+Item key added to inventory.
+put key in chest
+Error, key could not be added to chest as it is not in this room.
+Error, key not in inventory.
+w
+Oops, the location of rooms has changed. There is a nice chest in the corner
+put key in chest
+Item key added to chest
+chest is unlocked
+open chest
+chest contains torch, key.
+take torch
+Item torch added to inventory.
+n
+The Maze. Doors are everywhere. An old bottle of wine is there.
+n
+welcome to the exit
+open exit
+This torch cannot leave the place drop it to get out.
+drop torch
+torch dropped.
+open exit
+Victory!

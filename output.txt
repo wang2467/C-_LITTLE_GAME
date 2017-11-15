@@ -1,0 +1,33 @@
+Room - Entrance
+> Inventory: empty
+> Error
+> Error
+> Inventory: empty
+> closet contains sword
+> Error
+> Item sword added to inventory
+> Nothing written
+> Room - Main
+> Error
+> Error
+> Room - Staircase (exit)
+> Error
+> Error
+> bottle contains note
+> Item note added to inventory
+> You found the exit :-)
+> Item sword added to bottle
+> Error
+> Error
+> bottle contains sword
+> Error
+> Error
+> bottle contains sword
+> Item sword added to inventory
+> Item sword added to container
+> container contains sword
+> Item sword added to inventory
+> Inventory: note, sword
+> Error
+> Can't go that way
+> Game Over

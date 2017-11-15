@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map>
+  <room>
+    <name>Entrance</name>
+    <description>Start room</description>
+	<border>
+      <direction>south</direction>
+      <name>Room4</name>
+    </border>
+	<border>
+      <direction>west</direction>
+      <name>Room1</name>
+    </border>
+	<border>
+      <direction>east</direction>
+      <name>Room2</name>
+    </border>
+  </room>
+  <room>
+    <name>Room1</name>
+    <description>Key room</description>
+	<item>key</item>
+	<border>
+	  <direction>south</direction>
+      <name>Room3</name>
+    </border>
+	<border>
+	  <direction>east</direction>
+      <name>Entrance</name>
+    </border>
+  </room>
+  <room>
+    <name>Room2</name>
+	 <type>exit</type>
+	 <description>Sword and Dragon room</description>
+	 <item>sword</item>
+	 <creature>dragon</creature>
+	<border>	
+	  <direction>south</direction>
+      <name>Room5</name>
+    </border>
+	<border>
+	  <direction>west</direction>
+      <name>Entrance</name>
+    </border>
+  </room>
+  <room>
+    <name>Room3</name>
+    <description>chest and bottle room</description>
+	<container>chest</chest>
+	<container>bottle</bottle>
+	<border>	
+	  <direction>south</direction>
+      <name>Room6</name>
+    </border>
+	<border>
+	  <direction>west</direction>
+      <name>Room4</name>
+    </border>
+	<border>
+	  <direction>north</direction>
+      <name>Room1</name>
+    </border>
+  </room>
+  <room>
+    <name>Room4</name>
+    <description>Locked closet</description>
+	<container>closet</container>
+	<trigger>
+    	<command>open closet</command>
+	<type>permanent</type>
+	<condition>
+		<object>closet</object>
+		<status>locked</status>
+	</condition>
+	<print>closet needs a key to open</print>
+    </trigger>
+	<border>	
+	  <direction>south</direction>
+      <name>Room7</name>
+    </border>
+	<border>
+	  <direction>west</direction>
+      <name>Room3</name>
+    </border>
+	<border>
+	  <direction>north</direction>
+      <name>Entrance</name>
+    </border>
+	<border>
+	  <direction>east</direction>
+      <name>Room5</name>
+    </border>
+  </room>
+  <room>
+    <name>Room5</name>
+	 <type>exit</type>
+	<description>Torch and locked door room</description>
+	<item>torch</item>
+	<container>door</container>
+	<trigger>
+    <command>n</command>
+	<type>permanent</type>
+	<condition>
+		<object>door</object>
+		<status>locked</status>
+	</condition>
+	<print>Turn on the torch to burn the door</print>
+     </trigger>
+	<border>	
+	  <direction>south</direction>
+      <name>Room8</name>
+    </border>
+	<border>
+	  <direction>west</direction>
+      <name>Room4</name>
+    </border>
+	<border>
+	  <direction>north</direction>
+      <name>Room2</name>
+    </border>
+  </room>
+  <room>
+    <name>Room6</name>
+    <description>Axe, giant, and hidden note room</description>
+	<item>axe</axe>
+	<creature>giant</creature>
+	<border>
+	  <direction>east</direction>
+      <name>Room7</name>
+    </border>
+	<border>
+	  <direction>north</direction>
+      <name>Room3</name>
+    </border>
+  </room>
+  <room>
+    <name>Room7</name>
+    <description>Thors Hammer room</description>
+	<item>hammer</item>
+	<border>
+	  <direction>east</direction>
+      <name>Room8</name>
+    </border>
+	<border>
+	  <direction>west</direction>
+      <name>Room6</name>
+    </border>
+	<border>
+	  <direction>north</direction>
+      <name>Room4</name>
+    </border>
+  </room>
+  <room>
+    <name>Room8</name>
+	 <type>exit</type>
+    <description>Exit</description>
+	<border>
+	  <direction>west</direction>
+      <name>Room7</name>
+    </border>
+	<border>
+	  <direction>north</direction>
+      <name>Room5</name>
+    </border>
+  </room>
+  
+  <item>
+    <name>key</name>
+	<writing>Use it to open closet in closet room</writing>
+  </item>
+  
+  <item>
+    <name>sword</name>
+	<writing>Use it to kill the dragon</writing>
+  </item>
+  
+  <item>
+    <name>axe</name>
+	<writing>Use it to kill the giant</writing>
+  </item>
+  
+  <item>
+    <name>note</name>
+	<writing>Keep up the good work!</writing>
+  </item>
+  
+  <item>
+    <name>clothes</name>
+  </item>
+  
+  <item>
+  <name>nails</name>
+  </item>
+  
+  <item>
+  <name>candle</name>
+   <turnon>
+      <print>The candle burned your hand! And you dropped it...</print>
+      <action>drop candle</action>
+   </turnon>
+  </item>
+  
+  <item>
+  <name>torch</name>
+   <turnon>
+      <print>The door is on fire !!</print>
+      <action>Update door to unlocked</action>
+   </turnon>
+  </item>
+  
+  <item>
+  <name>hammer</name>
+   <turnon>
+      <print>The hammer is too heavy</print>
+      <action>drop hammer</action>
+   </turnon>
+  </item>
+  
+  <container>
+    <name>chest</name>
+    <item>candle</item>
+	<item>nails</item>
+  </container>
+  
+  <container>
+    <name>bottle</name>
+  </container>
+  
+  <container>
+    <name>closet</name>
+    <status>locked</status>
+    <accept>key</accept>
+    <item>clothes</item>
+    <trigger>
+	<condition>
+		<has>yes</has>
+		<object>key</object>
+		<owner>closet</owner>
+	</condition>
+        <print>closet is unlocked</print>
+	<action>Update closet to unlocked</action>
+	<action>Delete key</action>
+    </trigger>
+  </container>
+  
+  <container>
+    <name>door</name>
+    <status>locked</status>
+  </container>
+  
+  
+  <creature>
+    <name>dragon</name>
+    <vulnerability>sword</vulnerability>
+    <attack>
+	  	<print>You killed the dragon</print>
+		<action>Delete dragon</action>
+	</attack>   
+  </creature>
+  
+  <creature>
+    <name>giant</name>
+    <vulnerability>axe</vulnerability>
+    <attack>
+	  	<print>You killed the giant, there is a note beneath its corpse</print>
+		<action>Delete giant</action>
+		<action>Add note to Room6</action>
+	</attack>   
+  </creature>
+    
+</map>

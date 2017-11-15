@@ -1,0 +1,42 @@
+You find yourself at the mouth of a cave and decide that in spite of common sense and any sense of self preservation that you're going to go exploring north into it.  It's a little dark, but luckily there are some torches on the wall.
+take torch
+Item torch added to inventory.
+i
+Inventory: torch
+n
+A huge cavern surrounds you with a locked door to the north, a chest in the center, and a very dark corner...
+open chest
+chest contains explosive.
+take explosive
+Item explosive added to inventory.
+s
+You find yourself at the mouth of a cave and decide that in spite of common sense and any sense of self preservation that you're going to go exploring north into it.  It's a little dark, but luckily there are some torches on the wall.
+drop explosive
+explosive dropped.
+i
+Inventory: torch
+take explosive
+Item explosive added to inventory.
+i
+Inventory: torch, explosive
+attack gnome with explosive
+Error, gnome is not in the room.
+n
+A huge cavern surrounds you with a locked door to the north, a chest in the center, and a very dark corner...
+attack gnome with explosive
+Error, gnome was not affected by explosive
+turn on explosive
+You activate the explosive.
+you hear ticking...
+attack gnome with explosive
+You assault the gnome with the explosive.
+A tiny squeek is uttered from the tiny and, although scary looking, quite innocent creature before it vanishes in a very loud explosion.  Tragic, but you find he was sitting on a key!
+n
+lock needs a key... not to mention you don't want to get too close to that side of the room... there's something in that corner...
+take key
+Item key added to inventory.
+put key in lock
+Item key added to lock
+The lock drops off and the door opens
+n
+You found the exit!

@@ -1,25 +1,31 @@
-i
-n
-attack dragon with axe
-s
+Room - Entrance
 take axe
+Item axe added to inventory.
 n
-n
-open bottle
-take note
-put axe in bottle
-s
-attack giant with axe
-attack giant with note
-take sword
-attack dragon with sword
-drop sword
-n
-n
-take axe
-s
+Room - Main
 drop axe
-attack giant with axe
+axe dropped.
+i
+Inventory: empty
 take axe
+Item axe added to inventory.
+n
+Room - Staircase (exit)
+n
+Can't go that way.
+open bottle
+bottle contains note.
+take note
+Item note added to inventory.
+read note
+You found the exit :-)
+s
+Room - Main
 attack dragon with axe
-attack giant with axe
+You assault the dragon with the axe.
+Giant scares you away
+Room - Entrance
+n
+Room - Main
+n
+Room - Staircase (exit)
