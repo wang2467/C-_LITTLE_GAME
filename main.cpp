@@ -5,7 +5,7 @@ using namespace std;
 using namespace rapidxml;
 
 int main(){
-	file<> xmlFile("triggersample.xml");
+	file<> xmlFile("sample.txt.xml");
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 

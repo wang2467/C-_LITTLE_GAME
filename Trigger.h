@@ -19,6 +19,7 @@ public:
 	string type;
 	string command;
 	int dirty;
+	bool override;
 	vector<string> prints;
 	vector<string> actions;
 	TriggerOwner* owner;

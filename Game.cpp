@@ -45,13 +45,10 @@ Game::~Game(){
 void Game::start(){
 	string input;
 	cout << current_room -> description << endl;
-	int ct = 0;
-	while (ct < 15){
-	//while (!game_over){
+	while (!game_over){
 		cout << "> ";
 		getline(cin, input);
 		go(input);
-		ct++;
 	}
 }
 
@@ -109,6 +106,7 @@ Trigger* Game::isOverridenCreature(string input){
 	for(int i = 0; i < creatures.size(); i++){
 		for (int j = 0; j < creatures[i] -> trigger_list.size(); j++){
 			if (input == creatures[i] -> trigger_list[j] -> command){
+				creatures[i] -> trigger_list[j] -> override = true;
 				return creatures[i] -> trigger_list[j];
 			}
 		}
@@ -116,10 +114,10 @@ Trigger* Game::isOverridenCreature(string input){
 	return NULL;
 }
 
-bool Game::checkCreatureTrigger(string name, string input){
+bool Game::checkCreatureTrigger(string name, string input, bool override){
 	Trigger* trig;
 	bool judge = false;
-	if (checkCreatureTrigger_help(name, &trig, input, &judge)){
+	if (checkCreatureTrigger_help(name, &trig, input, &judge, override)){
 		for (int i = 0; i < trig -> prints.size(); i++){
 			cout << trig -> prints[i] << endl;
 		}
@@ -130,20 +128,23 @@ bool Game::checkCreatureTrigger(string name, string input){
 	return judge;
 }
 
-bool Game::checkCreatureTrigger_help(string name, Trigger** trig, string input, bool* judge){
+bool Game::checkCreatureTrigger_help(string name, Trigger** trig, string input, bool* judge, bool override){
 	for (int i = 0; i < creatures.size(); i++){
 		if (creatures[i] -> name == name){
 			for (int j = 0; j < creatures[i] -> trigger_list.size(); j++){
 				Trigger* t = creatures[i] -> trigger_list[j];
-				if (t -> dirty == 1){
-					if (t -> command == input){
+				if (t -> dirty == 1 || (t -> override && override)){
+					if (t -> command == input && t -> command != ""){
 						*judge = true;
+						t -> override = true;
 					}
 					if (t -> command == "" || t -> command == input){
 						TriggerStatus* ts = t -> status;
 						TriggerOwner* to = t -> owner;
 						if (checkTriggerStatus(ts)){
-							*trig = t;
+							//if (trig != NULL){
+								*trig = t;
+							//}
 							if (t -> type == "single" || (t -> type != "single" && t -> type != "permanent")){
 								t -> dirty = 0;
 							}
@@ -487,7 +488,7 @@ void Game::Act(string input){
 						cout << items[i] -> turnon -> print << endl; //needs to perfrom action
 						performAction(items[i] -> turnon -> action);
 						for (int j = 0; j < current_room -> creature_list.size(); j++){
-							checkCreatureTrigger((current_room -> creature_list)[j], input);
+							checkCreatureTrigger((current_room -> creature_list)[j], input, false);
 						}
 						return;
 					}				
@@ -515,7 +516,7 @@ void Game::Act(string input){
 	} 
 	else if (results[0] == "attack" && results[2] == "with"){
 			for(int i = 0; i < current_room -> creature_list.size(); i++){
-				checkCreatureTrigger(current_room -> creature_list[i], input);
+				checkCreatureTrigger(current_room -> creature_list[i], input, false);
 			}
 			for (int i = 0; i < current_room -> container_list.size(); i++){
 				checkContainerTrigger(current_room -> container_list[i], input);
@@ -528,7 +529,7 @@ void Game::Act(string input){
 							if ((creatures[i] -> attack != NULL && (creatures[i] -> attack -> status == NULL || checkTriggerStatus(creatures[i] -> attack -> status)))){
 								n = true;
 							}
-							else if (creatures[i] -> trigger_list.size() != 0 && checkTriggerStatus(creatures[i] -> trigger_list[0] -> status)){
+							else if (creatures[i] -> attack == NULL && creatures[i] -> trigger_list.size() != 0 && checkTriggerStatus(creatures[i] -> trigger_list[0] -> status)){
 								n = true;
 							}
 							if (n == true){
@@ -709,11 +710,24 @@ void Game::go(string input){
 	if (checkTrigger(input)){
 		return;
 	}
-	if (isOverridenCreature(input) == NULL){
+	bool judge;
+	bool k = false;
+	bool override;
+	Trigger* t1;
+	Trigger* t = isOverridenCreature(input);
+	for (int i = 0; i < creatures.size(); i++){
+		for (int j = 0; j < creatures[i] -> trigger_list.size(); j++){
+			if (t == creatures[i] -> trigger_list[j]){
+				judge = checkCreatureTrigger_help(creatures[i] -> name, &t1, input, &k, override);
+				override = judge;
+			}
+		}
+	}
+	if (t == NULL || !judge){
 		Act(input);
 	}
 	for(int i = 0; i < current_room -> creature_list.size(); i++){
-		checkCreatureTrigger(current_room -> creature_list[i], input);
+		checkCreatureTrigger(current_room -> creature_list[i], input, override);
 	}
 	for (int i = 0; i < current_room -> container_list.size(); i++){
 		checkContainerTrigger(current_room -> container_list[i], input);
@@ -729,10 +743,10 @@ void Game::go2(string input){
 		return;
 	}
 	Act(input);
-	for(int i = 0; i < current_room -> creature_list.size(); i++){
-		checkCreatureTrigger(current_room -> creature_list[i], input);
-	}
-	for (int i = 0; i < current_room -> container_list.size(); i++){
-		checkContainerTrigger(current_room -> container_list[i], input);
-	}
+	// for(int i = 0; i < current_room -> creature_list.size(); i++){
+	// 	checkCreatureTrigger(current_room -> creature_list[i], input, false);
+	// }
+	// for (int i = 0; i < current_room -> container_list.size(); i++){
+	// 	checkContainerTrigger(current_room -> container_list[i], input);
+	// }
 }
