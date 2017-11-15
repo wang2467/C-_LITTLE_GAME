@@ -49,14 +49,18 @@ public:
 	void Update(string, string);
 	void Delete(string);
 	void GameOver();
-	bool checkCreatureTrigger_help(string, Trigger**);
-	void checkCreatureTrigger(string);
+	bool checkCreatureTrigger_help(string, Trigger**, string, bool*);
+	bool checkCreatureTrigger(string, string);
 	bool checkTriggerOwner(TriggerOwner*);
 	bool checkTriggerStatus(TriggerStatus*);
 	bool checkConditionStatus(string, string, string);
 	void performAction(string);
-	void checkContainerTrigger(string);
-	bool checkContainerTrigger_help(string, Trigger**);
+	bool checkContainerTrigger(string, string);
+	bool checkContainerTrigger_help(string, Trigger**, string, bool*);
+	Trigger* isOverridenCreature(string);
+	void implementTrigger(Trigger*);
+	void go(string);
+	void go2(string);
 	
 	virtual ~Game();
 
