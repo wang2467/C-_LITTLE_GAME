@@ -61,6 +61,9 @@ public:
 	void implementTrigger(Trigger*);
 	void go(string);
 	void go2(string);
+	bool checkRoomTrigger(string, string, bool);
+	bool checkRoomTrigger_help(string, Trigger**, string, bool*, bool);
+
 	
 	virtual ~Game();
 
