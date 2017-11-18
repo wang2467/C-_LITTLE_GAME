@@ -1,0 +1,31 @@
+Room - Entrance
+open closet
+closet contains sword.
+take sword
+Item sword added to inventory.
+i
+Inventory: sword
+open closet
+closet is empty.
+n
+Room - Main
+n
+Room - Staircase (exit)
+open bottle
+bottle contains note.
+take note
+Item note added to inventory.
+read note
+You found the exit :-)
+s
+Room - Main
+s
+Room - Entrance
+open closet
+closet is empty.
+put note in closet
+Item note added to closet
+n
+Room - Main
+n
+Room - Staircase (exit)

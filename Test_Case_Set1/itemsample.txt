@@ -1,0 +1,33 @@
+Room - Entrance
+n
+Room - Main
+n
+Room - Staircase (exit)
+take shovel
+Error, Item not available.
+s
+Room - Main
+s
+Room - Entrance
+take shovel
+Item shovel added to inventory.
+i
+Inventory: shovel
+turn on
+Error
+turn on shovel
+You activate the shovel.
+The shovel GLOWS! And you drop it...
+shovel dropped.
+i
+Inventory: empty
+take shovel
+Item shovel added to inventory.
+turn on shovel
+You activate the shovel.
+The shovel GLOWS! And you drop it...
+shovel dropped.
+n
+Room - Main
+n
+Room - Staircase (exit)

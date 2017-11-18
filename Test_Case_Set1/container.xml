@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map>
+ 
+  <room>
+    <item>key</item>
+    <name>Entrance</name>
+    <description>You are in one of the middle earth caves: a golden key seems to be on the ground ready for you to pick it up</description>
+    <border>
+      <direction>north</direction>
+      <name>Main</name>
+    </border>
+	
+  </room>
+  
+  <room>
+    <name>Main</name>
+    <description>Hmmm, you are brave to walk here. An old rusty chest in the corner</description>
+    <border>
+      <direction>south</direction>
+      <name>Entrance</name>
+    </border>
+    <border>
+      <direction>north</direction>
+      <name>Staircase</name>
+    </border>
+  <container>chest</container>
+  <trigger>
+    	<command>open chest</command>
+	<type>permanent</type>
+	<condition>
+		<object>chest</object>
+		<status>locked</status>
+	</condition>
+	<print>chest needs a key to unlatch</print>
+ </trigger>
+ 
+  </room>
+  
+  <room>
+    <type>exit</type>
+    <name>Staircase</name>
+    <container>container</container>
+    <description>You are about to get out of middle earth to the 21s century but there is a lock in which no key can open but an axe to wreck</description>
+    <border>
+      <name>Main</name>
+      <direction>south</direction>
+    </border>
+	<container>lock</container>
+     <trigger>
+    <command>open exit</command>
+	<type>permanent</type>
+	<condition>
+		<object>lock</object>
+		<status>locked</status>
+	</condition>
+	<print>you need an axe to destroy the lock</print>
+ </trigger>
+  </room>
+  
+  <item>
+    <name>key</name>
+  </item>
+  <item>
+    <name>axe</name>
+  </item>
+  
+  <container>
+    <name>chest</name>
+    <status>locked</status>
+    <accept>key</accept>
+    <item>axe</item>
+    <trigger>
+	<condition>
+		<has>yes</has>
+		<object>key</object>
+		<owner>chest</owner>
+	</condition>
+        <print>chest is unlocked</print>
+	<action>Update chest to unlocked</action>
+	<action>Delete key</action>
+    </trigger>
+  </container>
+
+<container>
+    <name>lock</name>
+    <status>locked</status>
+    <accept>axe</accept>
+    <trigger>
+	<condition>
+		<has>yes</has>
+		<object>axe</object>
+		<owner>lock</owner>
+	</condition>
+        <print>lock is destroyed</print>
+	<action>Update lock to unlocked</action>
+    </trigger>
+  </container>
+  
+</map>

@@ -1,0 +1,100 @@
+<map>
+
+<room>
+<name>Entrance</name>
+<description>The Maze. Doors are everywhere. An old bottle of wine is there. </description>
+<container>bottle</container>
+<border>
+      <direction>north</direction>
+      <name>Cave1</name>
+</border>
+<border>
+      <direction>west</direction>
+      <name>Cave2</name>
+</border>
+<trigger>
+	<type>permanent</type>
+	<command>n</command>
+	<condition>
+		<has>no</has>
+		<object>torch</object>
+		<owner>inventory</owner>
+	</condition>
+	<print>You cannot find the door knob, a light can be very useful now</print>
+</trigger>
+</room>
+
+<room>
+<name>Cave1</name>
+<type>exit</type>
+<description>welcome to the exit </description>
+<border>
+      <direction>west</direction>
+      <name>Entrance</name>
+</border>
+<trigger>
+    <command>open exit</command>
+	<type>permanent</type>
+	<condition>
+		<has>yes</has>
+		<object>torch</object>
+		<owner>inventory</owner>
+	</condition>
+	<print>This torch cannot leave the place drop it to get out.</print>
+ </trigger>
+</room>
+
+<room>
+<name>Cave2</name>
+<description>Oops, the location of rooms has changed. There is a nice chest in the corner </description>
+<border>
+      <direction>north</direction>
+      <name>Entrance</name>
+</border>
+<container>chest</container>
+<trigger>
+    	<command>open chest</command>
+	<type>permanent</type>
+	<condition>
+		<object>chest</object>
+		<status>locked</status>
+	</condition>
+	<print>chest needs a key to open</print>
+ </trigger>
+</room>
+
+
+
+
+
+<item> 
+ <name>torch</name>
+ <writing>Finally, darkness is no more</writing>
+</item>
+
+<item> 
+ <name>key</name>
+ <writing>Ancient key</writing>
+</item>
+
+<container>
+    <name>bottle</name>
+    <item>key</item>
+</container>
+
+<container>
+    <name>chest</name>
+    <status>locked</status>
+    <accept>key</accept>
+    <item>torch</item>
+    <trigger>
+	<condition>
+		<has>yes</has>
+		<object>key</object>
+		<owner>chest</owner>
+	</condition>
+        <print>chest is unlocked</print>
+	<action>Update chest to unlocked</action>
+    </trigger>
+</container>
+</map>

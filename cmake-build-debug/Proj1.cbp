@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Proj1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Proj1">
+				<Option output="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Proj1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 Proj1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Proj1/fast">
+				<Option output="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Proj1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 Proj1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/shulin/Documents/ECE30862/ECE-30862/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Attack.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Attack.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/AttackCondition.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/AttackCondition.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Border.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Border.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Container.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Container.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Creature.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Creature.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Game.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Game.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Item.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Item.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Room.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Room.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Trigger.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/Trigger.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/TriggerOwner.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/TriggerOwner.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/TriggerStatus.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/TriggerStatus.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/TurnOn.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/TurnOn.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/containersample.xml">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/creaturesample.xml">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/item.h">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/itemsample.xml">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/license.txt">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/main.cpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/manual.html">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/rapidxml.hpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/rapidxml_iterators.hpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/rapidxml_print.hpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/rapidxml_utils.hpp">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/roomsample.xml">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/sample.txt.xml">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/triggersample.xml">
+			<Option target="Proj1"/>
+		</Unit>
+		<Unit filename="/Users/shulin/Documents/ECE30862/ECE-30862/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

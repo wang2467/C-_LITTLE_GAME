@@ -1,0 +1,30 @@
+Welcome the world of creatures. Glowing sword and exotic key are on the ground.
+n
+Room of dragon
+n
+Dragon is portecting the door
+s
+Welcome the world of creatures. Glowing sword and exotic key are on the ground.
+s
+Can't go that way.
+take sword
+Item sword added to inventory.
+take key
+Item key added to inventory.
+n
+Room of dragon
+put key in chest
+Item key added to chest
+chest is unlocked
+open chest
+chest contains axe.
+take axe
+Item axe added to inventory.
+attack dragon with axe
+You assault the dragon with the axe.
+attack dragon with sword
+You slained the dragon
+n
+Room of giant
+attack giant with axe
+Victory!

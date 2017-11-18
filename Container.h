@@ -20,6 +20,10 @@ public:
 	string description;
 	string status;
 
+	//Change 1 begins
+	bool open_status;
+	//Change 1 ends
+
 	vector<string> accepts;
 	vector<Trigger*> triggers;
 	vector<string> items;

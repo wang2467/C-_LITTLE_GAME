@@ -1,0 +1,22 @@
+Room - Entrance
+take axe
+Item axe added to inventory.
+n
+Room - Main
+attack dragon with axe
+You assault the dragon with the axe.
+n
+Room - Staircase (exit)
+open bottle
+bottle contains note.
+take note
+Item note added to inventory.
+axe got sharper
+attack giant with axe
+Error, giant was not affected by axe
+s
+Room - Main
+attack dragon with axe
+You assault the dragon with the axe.
+the axe is quite sharp
+Error, Item not available.

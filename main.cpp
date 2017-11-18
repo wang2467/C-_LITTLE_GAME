@@ -4,8 +4,9 @@
 using namespace std;
 using namespace rapidxml;
 
-int main(){
-	file<> xmlFile("sample.txt.xml");
+int main(int argc, char* argv[]){
+//	file<> xmlFile("rooms.xml");
+	file<> xmlFile(argv[1]);
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 
@@ -43,4 +44,5 @@ int main(){
 	// 		cout << (g -> items)[i] -> turnon -> action << endl;
 	// 	}
 	// }
+	return 0;
 }

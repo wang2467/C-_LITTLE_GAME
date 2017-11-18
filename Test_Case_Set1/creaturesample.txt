@@ -1,0 +1,31 @@
+Room - Entrance
+take axe
+Item axe added to inventory.
+n
+Room - Main
+drop axe
+axe dropped.
+i
+Inventory: empty
+take axe
+Item axe added to inventory.
+n
+Room - Staircase (exit)
+n
+Can't go that way.
+open bottle
+bottle contains note.
+take note
+Item note added to inventory.
+read note
+You found the exit :-)
+s
+Room - Main
+attack dragon with axe
+You assault the dragon with the axe.
+Giant scares you away
+Room - Entrance
+n
+Room - Main
+n
+Room - Staircase (exit)

@@ -1,0 +1,64 @@
+Start room
+w
+Key room
+take key
+Item key added to inventory.
+read key
+Use it to open closet in closet room
+e
+Start room
+e
+Sword and Dragon room
+take sword
+Item sword added to inventory.
+attack dragon with sword
+You assault the dragon with the sword.
+You killed the dragon
+s
+Torch and locked door room
+w
+Locked closet
+w
+chest and bottle room
+open chest
+chest contains candle, nails.
+take nails
+Item nails added to inventory.
+take candle
+Item candle added to inventory.
+turn on candle
+You activate the candle.
+The candle burned your hand! And you dropped it...
+candle dropped.
+w
+Locked closet
+e
+Torch and locked door room
+n
+Turn on the torch to burn the door
+take torch
+Item torch added to inventory.
+turn on torch
+You activate the torch.
+The door is on fire !!
+n
+Sword and Dragon room
+w
+Start room
+w
+Key room
+take axe
+Error, Item not available.
+s
+chest and bottle room
+s
+Axe, giant, and hidden note room
+take axe
+Item axe added to inventory.
+attack giant with axe
+You assault the giant with the axe.
+You killed the giant, there is a note beneath its corpse
+take note
+Item note added to inventory.
+read note
+Keep up the good work!

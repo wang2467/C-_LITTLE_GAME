@@ -399,8 +399,8 @@ void Game::Act(string input){
 		for (unsigned int i = 0; i < (current_room -> item_list).size(); i++){
 			if (results[1] == (current_room -> item_list)[i]){
 				inventory.push_back((current_room -> item_list)[i]);
-				current_room -> item_list.erase(current_room -> item_list.begin()+i);
 				cout << "Item " << current_room -> item_list[i] << " added to inventory" << endl;
+				current_room -> item_list.erase(current_room -> item_list.begin()+i);
 				return;
 			} 
 		}
@@ -409,11 +409,22 @@ void Game::Act(string input){
 				if (current_room -> container_list[i] == containers[j] -> name && containers[j] -> status == "unlocked"){
 					for (unsigned int k = 0; k < containers[j] -> items.size(); k++){
 						if (containers[j] -> items[k] == results[1]) {
-							inventory.push_back(containers[j] -> items[k]);
-							containers[j] -> items.erase(containers[j] -> items.begin()+k);
-							cout << "Item " << containers[j] -> items[k] << " added to inventory" << endl;
-							return;							
+	
+						//Modification begins  check if the container is opened already, if not then take, else return error
+							if(containers[j] -> open_status == true)
+							{
+								inventory.push_back(containers[j] -> items[k]);
+								containers[j] -> items.erase(containers[j] -> items.begin()+k);
+								cout << "Item " << containers[j] -> items[k] << " added to inventory" << endl;
+								return;
+							}
+							else{
+								cout << "Error" << endl;
+								return;
+							}
 						}
+						//Modification ends
+
 					}
 				}
 			}
@@ -425,7 +436,29 @@ void Game::Act(string input){
 			if (results[1] == current_room -> container_list[i]){
 				for (unsigned int j = 0; j < containers.size(); j++){
 					if (containers[j] -> name == current_room -> container_list[i]){
-						containers[j] -> status = "unlocked";
+
+						//Modification begins   Check if the container needs to be open with certain items, if no then be opened, else return error
+						if(containers[j] -> open_status == false){
+						//	if(containers[j] -> status != "unlocked" && containers[j] -> status.empty()){
+								if(containers[j] -> accepts.size() == 0 || containers[j] -> status == "unlocked"){
+									containers[j] -> status = "unlocked";
+									containers[j] -> open_status = true;
+								}
+								else if((containers[j] -> accepts.size() != 0 && containers[j] -> status == "unlocked" )|| (containers[j] -> status == "")){
+									containers[j] -> status = "unlocked";
+									containers[j] -> open_status = true;
+								}
+								else{
+									cout << "Error" << endl;
+									return;
+							}
+					//	}
+					}
+						else if(containers[j] -> open_status == true){
+							containers[j] -> status = "unlocked";
+						}
+						//Modification ends
+
 						if ((containers[j] -> items).size() == 0){
 							cout << containers[j] -> name << " is empty" << endl;
 						} else {
@@ -506,13 +539,30 @@ void Game::Act(string input){
 			for (unsigned int k = 0; k < containers.size(); k++){
 				if (current_room -> container_list[i] == container_new && containers[k] -> name == container_new){
 					for (unsigned int j = 0; j < inventory.size(); j++){
-						if (item_new == inventory[j] && containers[k] -> doesAccept(item_new)){
+			/*			if (item_new == inventory[j] && containers[k] -> doesAccept(item_new)){
 							containers[k] -> items.push_back(item_new);		
 							inventory.erase(inventory.begin()+j);	
 							cout << "Item " << item_new << " added to " << container_new << endl;
 							checkContainerTrigger(container_new, input);
 							return;			
 						}
+			*/
+						//Modification begins  Check if the container is opened, or a certain item is inserted.
+						if (item_new == inventory[j] && containers[k] -> doesAccept(item_new) && (containers[k] -> accepts.size() != 0)){
+										containers[k] -> items.push_back(item_new);
+										inventory.erase(inventory.begin()+j);
+										cout << "Item " << item_new << " added to " << container_new << endl;
+										checkContainerTrigger(container_new, input);
+										return;
+						}
+						else if (item_new == inventory[j] && containers[k] -> doesAccept(item_new) && (containers[k] -> accepts.size() == 0) && (containers[k] -> open_status == true)){
+										containers[k] -> items.push_back(item_new);
+										inventory.erase(inventory.begin()+j);
+										cout << "Item " << item_new << " added to " << container_new << endl;
+										checkContainerTrigger(container_new, input);
+										return;
+						}
+						//Modification ends
 					}
 				}
 			}
@@ -531,7 +581,23 @@ void Game::Act(string input){
 				for (unsigned int i = 0; i < creatures.size(); i++){
 					if (results[1] == creatures[i] -> name){
 						if (creatures[i] -> isVulnerableTo(results[3])){
-							cout << "You assult the " << results[1] << " with " << results[3] << endl;
+
+							//Modification begins, if item is not in inventory, print error, if item cannot attack creature, print error, else print attack successful.
+							if(inventory.size() == 0){
+								cout << "Error" << endl;
+								return;
+							}
+							for(unsigned int temp = 0; temp < inventory.size(); temp++){
+								if(inventory[temp] == results[3]){
+									break;
+								}
+								if(temp == (inventory.size() - 1)){
+									cout << "Error" << endl;
+									return;
+								}
+							}
+							//Modification
+							//cout << "You assult the " << results[1] << " with " << results[3] << endl;
 							f = true;
 							bool n = false;
 							if ((creatures[i] -> attack != NULL && (creatures[i] -> attack -> status == NULL || checkTriggerStatus(creatures[i] -> attack -> status)))){
@@ -540,10 +606,26 @@ void Game::Act(string input){
 							else if (creatures[i] -> attack == NULL && creatures[i] -> trigger_list.size() != 0 && checkTriggerStatus(creatures[i] -> trigger_list[0] -> status)){
 								n = true;
 							}
+
+							
+							else if(creatures[i] -> attack == NULL && creatures[i] -> trigger_list.size() != 0 && checkTriggerStatus(creatures[i] -> trigger_list[1] -> status)){
+								n = true;
+							}
+
+							if (n == false){
+								if(creatures[i] -> attack == NULL){
+									cout << "You assult the " << results[1] << " with " << results[3] << endl;
+									return;
+								}
+								cout << "Error" << endl;
+								return;
+							}
+							//Modification ends
+
 							if (n == true){
 								for (unsigned int k = 0; k < inventory.size(); k++){
 									if (results[3] == inventory[k]){
-										//cout << "You assult the " << results[1] << " with " << results[3] << endl;
+										cout << "You assult the " << results[1] << " with " << results[3] << endl;
 										if (creatures[i] -> attack != NULL){
 											for (unsigned int j = 0; j < creatures[i] -> attack -> prints.size(); j++){
 												cout << creatures[i] -> attack -> prints[j] << endl;  //needs to perform action
@@ -615,6 +697,15 @@ void Game::Update(string object, string newStatus){
 		for (unsigned int i = 0; i < containers.size(); i++){
 			if (containers[i] -> name == object){
 				containers[i] -> status = newStatus;
+
+				// Change 1 begins
+		//		if(newStatus == "unlocked"){
+		//			containers[i] -> lock_status = false;
+		//		}
+		//		else if(newStatus == "locked"){
+			//		containers[i] -> lock_status = true;
+			//	}
+				//Change 1 ends
 			}
 		}
 	}

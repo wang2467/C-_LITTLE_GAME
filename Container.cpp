@@ -6,6 +6,13 @@ Container::Container(xml_node<>* a){
 			name = n -> value();
 		} else if (string(n -> name()) == "status"){
 			status = n -> value();
+			//Change 1 begins
+			//if(status == "locked"){
+		//	}
+		//	else{
+			//	lock_status = false;
+		//	}
+			//Change 1 ends
 		} else if (string(n -> name()) == "description"){
 			description = n -> value();
 		} else if (string(n -> name()) == "accept"){
@@ -16,6 +23,8 @@ Container::Container(xml_node<>* a){
 			items.push_back(n -> value());
 		}
 	}	 
+	open_status = false;
+
 }
 
 Container::~Container(){
